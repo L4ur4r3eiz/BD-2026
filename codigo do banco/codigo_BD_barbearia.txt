@@ -1,0 +1,91 @@
+CREATE TABLE senioridade 
+( 
+    codsenioridade INT PRIMARY KEY NOT NULL,  
+    nome VARCHAR(50) NOT NULL
+); 
+
+CREATE TABLE tatuador 
+( 
+    id_tatuador INT PRIMARY KEY NOT NULL,  
+    idsenioridade INT NOT NULL,  
+    telefone VARCHAR(15) NULL,  
+    nome VARCHAR(100) NOT NULL,  
+    data_contratacao DATE NOT NULL,  
+    experiencia INT NULL,  
+    cpf CHAR(11) NOT NULL
+); 
+
+CREATE TABLE estilos 
+( 
+    id_estilo INT PRIMARY KEY NOT NULL,  
+    estilo VARCHAR(50) NOT NULL,  
+    nome VARCHAR(100) NOT NULL,  
+    descricao VARCHAR(255) NULL
+); 
+
+CREATE TABLE cliente 
+( 
+    cpf CHAR(11) PRIMARY KEY NOT NULL,  
+    nome_completo VARCHAR(100) NOT NULL,  
+    data_nascimento DATE NOT NULL,  
+    telefone VARCHAR(15) NULL
+); 
+
+CREATE TABLE agendamentos 
+( 
+    id_agendamentos INT PRIMARY KEY NOT NULL,  
+    idcliente CHAR(11) NOT NULL,  
+    data_hora DATETIME NOT NULL,  
+    descricao VARCHAR(255) NULL,  
+    valor DECIMAL(10,2) NOT NULL,  
+    status VARCHAR(30) NOT NULL
+); 
+
+
+    
+CREATE TABLE dominio 
+( 
+id_tatuador INT NOT NULL,  
+    id_estilo INT NOT NULL,
+    
+    PRIMARY KEY (id_tatuador, id_estilo)
+); 
+
+
+CREATE TABLE possui 
+( 
+    id_agendamentos INT NOT NULL,  
+    id_tatuador INT NOT NULL,
+    
+    PRIMARY KEY (id_agendamentos, id_tatuador)
+); 
+
+
+ALTER TABLE tatuador 
+ADD FOREIGN KEY (idsenioridade) 
+REFERENCES senioridade (codsenioridade);
+
+
+ALTER TABLE agendamentos 
+ADD FOREIGN KEY (idcliente) 
+REFERENCES cliente (cpf);
+
+
+ALTER TABLE dominio 
+ADD FOREIGN KEY (id_tatuador) 
+REFERENCES tatuador (id_tatuador);
+
+
+ALTER TABLE dominio 
+ADD FOREIGN KEY (id_estilo) 
+REFERENCES estilos (id_estilo);
+
+
+ALTER TABLE possui 
+ADD FOREIGN KEY (id_agendamentos) 
+REFERENCES agendamentos (id_agendamentos);
+
+
+ALTER TABLE possui 
+ADD FOREIGN KEY (id_tatuador) 
+REFERENCES tatuador (id_tatuador);
