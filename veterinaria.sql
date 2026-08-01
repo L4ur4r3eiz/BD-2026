@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Jul-2026 às 17:26
+-- Tempo de geração: 02-Ago-2026 às 01:32
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -63,6 +63,16 @@ CREATE TABLE `atendimentos` (
   `descricao` varchar(255) NOT NULL,
   `valor` decimal(7,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `atendimentos`
+--
+
+INSERT INTO `atendimentos` (`id_ate`, `id_ani`, `id_vet`, `dataatendimento`, `horaatendimento`, `descricao`, `valor`) VALUES
+(1, 1, 1, '2026-08-01', '09:00:00', 'Consulta de rotina', 120.00),
+(2, 2, 2, '2026-08-02', '14:30:00', 'Tratamento dermatológico', 180.00),
+(3, 3, 1, '2026-08-03', '10:00:00', 'Exame clínico', 150.00),
+(4, 4, 2, '2026-08-04', '16:15:00', 'Vacinação', 90.00);
 
 -- --------------------------------------------------------
 
@@ -157,7 +167,7 @@ ALTER TABLE `animais`
 -- AUTO_INCREMENT de tabela `atendimentos`
 --
 ALTER TABLE `atendimentos`
-  MODIFY `id_ate` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
